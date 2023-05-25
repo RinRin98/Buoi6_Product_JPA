@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+<head th:replace="~{layout :: head}">
+</head>
+<body>
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" th:fragment="content_right">
+    <div class="container">
+        <div class="booking p-5">
+            <div class="row g-5 align-items-center">
+                <div class="">
+                    <h1 class="text-white mb-4" style="color: #e6e154">Edit Product</h1>
+                    <form th:action="@{/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control bg-white" id="name" placeholder="productName" th:field="*{name}">
+                                    <label for="name" style="color: #e6e154">name</label>
+                                    <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <!--                                    <input type="text" class="form-control bg-white" id="image" placeholder="image" th:field="*{image}">-->
+                                    <input type="file" class="form-control bg-white" name="imageProduct" id="image" accept="image/jpeg, image/png" placeholder="image">
+                                    <label for="image" style="color: #e6e154">image</label>
+                                    <span class="text-danger" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control bg-white" id="price" placeholder="price" th:field="*{price}">
+                                    <label for="price" style="color: #e6e154">price</label>
+                                    <span class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <button class="btn btn-outline-light w-100 py-3" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

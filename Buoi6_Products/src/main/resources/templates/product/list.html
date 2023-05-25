@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{layout.html :: layout}">
+
+<body>
+<div id="templatemo_content_right" th:fragment="content_right">
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+
+                <h1 class="mb-5">List Products</h1>
+                <form th:action="@{/search}" method="get">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control bg-white" id="name" name="input" placeholder="Nhập từ khóa để tìm:">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-light w-100 py-3" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                <div class="col-md-6">
+                    <span>
+                      <a class="breadcrumb justify-content-center" th:href="@{/create}">Create new product</a>
+                    </span>
+                </div>
+
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product : ${list}">
+                                <td th:text="${product.id}"></td>
+
+                                <td th:text="${product.name}"></td>
+                                <!--                                    <td th:text="${course.image}"></td>-->
+                                <td><img width="60px" height="60px" th:src=@{/static/images/}+${product.image}></td>
+                                <td th:text="${product.price}"></td>
+                                <td><a th:href="@{/edit/{id}(id=${product.id})}">Edit</a>
+                                    <a th:href="@{/delete/{id}(id=${product.id})}"
+                                       onclick="return confirm('Are you sure to delete?')" >Delete</a></td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
